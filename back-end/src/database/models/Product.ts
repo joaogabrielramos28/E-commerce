@@ -13,6 +13,9 @@ class Product {
 
     @Column()
     price:string;
+
+    @Column()
+    category:String
 }
 
 export default Product;
