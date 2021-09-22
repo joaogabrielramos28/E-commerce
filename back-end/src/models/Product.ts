@@ -6,16 +6,16 @@ class Product {
     id: string;
 
     @Column()
-    productName:string;
+    name:string;
 
-    @Column('array')
-    images:Array<String>;
+    @Column('simple-array')
+    images:string[];
 
     @Column()
     price:string;
 
     @Column()
-    category:String
+    category:string
 }
 
 export default Product;

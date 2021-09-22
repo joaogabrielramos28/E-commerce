@@ -13,7 +13,7 @@ export class CreateProducts1632179927489 implements MigrationInterface {
             generationStrategy: 'uuid'
           },
           {
-            name: 'product_name',
+            name: 'name',
             type: 'varchar',
             isNullable: false
           },
