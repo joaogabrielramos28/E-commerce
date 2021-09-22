@@ -1,6 +1,6 @@
 {
     "type": "postgres",
-    "database": "ecommerce",
+    "database": "e-commerce",
     "port":5432,
     "host":"localhost",
     "username":"postgres",
