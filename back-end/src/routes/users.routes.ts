@@ -25,8 +25,8 @@ usersRouter.post('/', async (request, response) => {
       name
     });
     return response.json({ email: user.email, name: user.name, age: user.age });
-  } catch (err) {
-    response.status(400).json({ error: err });
+  } catch (err:any) {
+    return response.status(400).json({ error: err.message });
   }
 });
 
