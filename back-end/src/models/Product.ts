@@ -9,7 +9,7 @@ class Product {
     name:string;
 
     @Column('simple-array')
-    images:string[];
+    images:Array<string>
 
     @Column()
     price:string;

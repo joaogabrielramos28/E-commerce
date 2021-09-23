@@ -8,17 +8,18 @@ const productsRouter = Router();
 productsRouter.get('/', async (request, response) => {
   const productsRepository = getCustomRepository(ProductsRepository);
   const products = await productsRepository.find();
-
   return response.json(products);
 });
 
 productsRouter.post('/', async (request, response) => {
   try {
-    const { productName, price, images, category } = request.body;
+    const { name, price, images, category } = request.body;
+    console.log(name, price, images, category);
+
     const createProduct = new CreateProductService();
 
     const product = await createProduct.execute({
-      productName,
+      name,
       price,
       category,
       images

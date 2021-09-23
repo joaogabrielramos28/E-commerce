@@ -5,7 +5,7 @@ import ProductsRepository from '../repositories/ProductsRepository';
 interface Request {
     name: string;
     price: string;
-    images: Array<string>;
+    images:Array<string>;
     category: string;
 }
 ;
@@ -20,6 +20,7 @@ class CreateProductService {
       images,
       category
     });
+    await productsRepository.save(product);
     return product;
   }
 }
