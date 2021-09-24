@@ -16,6 +16,9 @@ class User {
 
     @Column()
     name:string
+
+    @Column()
+    avatar:string
 }
 
 export default User;
