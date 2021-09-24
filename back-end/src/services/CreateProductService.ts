@@ -1,7 +1,6 @@
 import { getCustomRepository } from 'typeorm';
 import Product from '../models/Product';
 import ProductsRepository from '../repositories/ProductsRepository';
-
 interface Request {
     name: string;
     price: string;

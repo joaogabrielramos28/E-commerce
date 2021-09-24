@@ -12,23 +12,19 @@ productsRouter.get('/', async (request, response) => {
 });
 
 productsRouter.post('/', async (request, response) => {
-  try {
-    const { name, price, images, category } = request.body;
-    console.log(name, price, images, category);
+  const { name, price, images, category } = request.body;
+  console.log(name, price, images, category);
 
-    const createProduct = new CreateProductService();
+  const createProduct = new CreateProductService();
 
-    const product = await createProduct.execute({
-      name,
-      price,
-      category,
-      images
-    });
+  const product = await createProduct.execute({
+    name,
+    price,
+    category,
+    images
+  });
 
-    return response.json(product);
-  } catch (err) {
-    return response.status(400).json({ error: err });
-  }
+  return response.json(product);
 });
 
 export default productsRouter;
