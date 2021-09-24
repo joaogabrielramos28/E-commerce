@@ -24,7 +24,6 @@ class UpdateUserAvatarService {
         await fs.promises.unlink(userAvatarFilePath);
       }
     }
-
     user.avatar = avatarFilename;
 
     await usersRepository.save(user);

@@ -18,7 +18,7 @@ class User {
     name:string
 
     @Column()
-    avatar:string
+    avatar?:string
 }
 
 export default User;
