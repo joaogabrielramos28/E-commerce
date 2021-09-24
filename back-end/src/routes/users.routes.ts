@@ -3,12 +3,13 @@ import { getRepository } from 'typeorm';
 
 import User from '../models/User';
 import CreateUserService from '../services/CreateUserService';
-const usersRouter = Router();
-
-usersRouter.get('/', async (request, response) => {
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+const usersRouter = Router(); ;
+usersRouter.get('/', ensureAuthenticated, async (request, response) => {
   const usersRepository = getRepository(User);
 
   const users = await usersRepository.find();
+  console.log(request.user);
 
   return response.status(200).json(users);
 });

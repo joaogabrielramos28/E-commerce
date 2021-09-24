@@ -2,6 +2,7 @@ import { compare } from 'bcryptjs';
 import { getRepository } from 'typeorm';
 import User from '../models/User';
 import { sign } from 'jsonwebtoken';
+import authConfig from '../config/auth';
 interface Request{
     email:string,
     password:string
@@ -29,12 +30,11 @@ class AuthenticateUserService {
     if (!passwordMatched) {
       throw new Error('Incorret email/password combination');
     }
-
-    const token = sign({}, '5f25a82a4222cc311fc0851165ac48cd', {
-      expiresIn: '1d',
+    const { secret, expiresIn } = authConfig.jwt;
+    const token = sign({}, secret, {
+      expiresIn: expiresIn,
       subject: user.id
     });
-
     return {
       user,
       token
