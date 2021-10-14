@@ -10,6 +10,9 @@ const Header: React.FC = () => {
     const handleOpenCart = useCallback(() => {
         setCartIsOpen(true);
     }, []);
+    const handleCloseCart = useCallback(() => {
+        setCartIsOpen(false);
+    }, []);
 
     return (
         <>
@@ -28,7 +31,7 @@ const Header: React.FC = () => {
                     />
                 </Content>
             </Container>
-            <Cart cartRef={cartRef} />
+            <Cart cartRef={cartRef} modaClose={handleCloseCart} />
         </>
     );
 };

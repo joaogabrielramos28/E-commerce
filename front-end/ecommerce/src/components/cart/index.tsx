@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { CartContext } from '../../context/CartContext';
-import { Container } from './styles';
+import { Container, Overlay } from './styles';
 
 interface CartProps {
     cartRef: any | null;
+    modaClose: () => void;
 }
 
 const Cart: React.FC<CartProps> = (props) => {
@@ -11,9 +12,12 @@ const Cart: React.FC<CartProps> = (props) => {
     return (
         <>
             {cartIsOpen ? (
-                <Container ref={props.cartRef} isOpen={cartIsOpen}>
-                    <h2>OLA</h2>
-                </Container>
+                <>
+                    <Container ref={props.cartRef} isOpen={cartIsOpen}>
+                        <h2>OLA</h2>
+                    </Container>
+                    <Overlay onClick={props.modaClose} />
+                </>
             ) : null}
         </>
     );

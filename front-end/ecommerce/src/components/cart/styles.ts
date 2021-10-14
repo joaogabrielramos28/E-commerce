@@ -28,5 +28,18 @@ export const Container = styled.div<ContainerProps>`
     css`
       ${Animate} 0.4s
     `};
+    z-index:100;
+`
+
+
+export const Overlay = styled.div`
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background:rgba(0,0,0,.5);
+    z-index:10;
+
 `
 
