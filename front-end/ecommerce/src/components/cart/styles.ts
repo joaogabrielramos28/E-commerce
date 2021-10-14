@@ -21,7 +21,7 @@ export const Container = styled.div<ContainerProps>`
     right:0;
     top:0;
     height:100vh;
-    background:#121212;
+    background:#212121;
     width:30vw;
     animation: ${props =>
     props.isOpen &&
@@ -43,3 +43,101 @@ export const Overlay = styled.div`
 
 `
 
+export const Header = styled.div`
+        display:flex;
+        justify-content:space-between;
+        width:100%;
+        color:#FFF;
+        padding:16px 12px;
+        gap:50px;
+        margin-bottom:12px;
+        span{
+            padding:0 12px;
+            font-weight:bold;
+            font-size:22px;
+        }
+        a{
+            padding: 0 30px;
+            font-size:16px;
+            color:#97282E;
+
+        }
+
+`
+
+
+export const ProductList = styled.div`
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:30px;
+
+`
+
+
+export const Product = styled.div`
+
+
+    width:70%;
+    display: flex;
+    justify-content:flex-start;
+    background: #4D4D4D;
+    color: #ECECEC;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius:12px;
+    img{
+        width:100px;
+        height:100px;
+        border-radius:12px 0 0 12px;
+    }
+
+    .infos{
+        display: flex;
+        flex-direction: column;
+        padding:4px 8px;
+        flex:1;
+        h4{
+            width:100%;
+        }
+        span{
+            font-weight:bold;
+            color:#9A9B9C;
+            font-size:12px;
+            margin-top:5px;
+        }
+    }
+
+   .tes{
+       display: flex;
+       flex-direction: column;
+       justify-content: space-between;
+        width:50px;
+        padding:4px 0;
+       button{
+           background:transparent;
+           outline:none;
+           border:0;
+           cursor:pointer;
+           color:#97282E;
+           text-align:center;
+       }
+
+       span{
+           position: relative;
+
+           input{
+
+            padding:5px;
+            margin: 0 0 0 5px;
+            width:35px;
+            border:none;
+            color:#f0f0f0;
+
+            background:transparent;
+            outline:none;
+
+           }
+       }
+   }
+`
