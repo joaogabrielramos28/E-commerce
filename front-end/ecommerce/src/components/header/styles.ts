@@ -9,12 +9,13 @@ export const Container = styled.header`
     border-radius:8px;
     color:#FFF;
 
-`
+    `
 export const Content = styled.nav`
     width:100%;
     display: flex;
     align-items: center;
     justify-content:space-between;
+    z-index:-10;
 
     svg{
         cursor:pointer;
@@ -45,7 +46,6 @@ export const List = styled.div`
             transition:opacity 0.4s
         }
     }
-
-
-
 `
+
+
