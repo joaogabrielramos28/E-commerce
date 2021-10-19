@@ -11,7 +11,6 @@ import {
 } from './styles';
 import { AiOutlineClose } from 'react-icons/all';
 interface CartProps {
-    cartRef: any | null;
     modaClose: () => void;
 }
 
@@ -21,7 +20,7 @@ const Cart: React.FC<CartProps> = (props) => {
         <>
             {cartIsOpen ? (
                 <>
-                    <Container ref={props.cartRef} isOpen={cartIsOpen}>
+                    <Container isOpen={cartIsOpen}>
                         <Header>
                             <span>My Cart</span>
                             <a href="#">Remove(1)</a>

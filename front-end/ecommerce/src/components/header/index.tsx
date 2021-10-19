@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import Cart from '../cart/index';
 import { CartContext } from '../../context/CartContext';
 const Header: React.FC = () => {
-    const cartRef = useRef(null);
     const { setCartIsOpen } = useContext(CartContext);
     const handleOpenCart = useCallback(() => {
         setCartIsOpen(true);
@@ -31,7 +30,7 @@ const Header: React.FC = () => {
                     />
                 </Content>
             </Container>
-            <Cart cartRef={cartRef} modaClose={handleCloseCart} />
+            <Cart modaClose={handleCloseCart} />
         </>
     );
 };

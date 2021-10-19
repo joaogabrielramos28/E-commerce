@@ -1,7 +1,6 @@
 import styled, { css, keyframes } from 'styled-components';
 
 interface ContainerProps {
-    ref: any;
     isOpen: boolean;
 }
 
