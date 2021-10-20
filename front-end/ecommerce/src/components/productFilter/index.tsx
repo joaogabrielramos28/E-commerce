@@ -3,10 +3,10 @@ import { Container, Select } from './styles';
 const ProductFilter: React.FC = () => {
     return (
         <Container>
-            <h3>Filtrar por</h3>
+            <h3>Filter</h3>
 
             <Select>
-                <option value="">Category</option>
+                <option value="default">Order By</option>
             </Select>
         </Container>
     );

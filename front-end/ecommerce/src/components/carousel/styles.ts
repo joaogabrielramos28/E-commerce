@@ -8,8 +8,9 @@ export const Container = styled.div`
     position: relative;
 
     img {
-        width: 90vw;
+        width: 100%;
         height: 600px;
+        object-fit: cover;
         border-radius: 10px;
     }
 
@@ -49,6 +50,7 @@ export const Container = styled.div`
         transition-duration: 1s ease;
     }
     .slide.active {
+        width: 100%;
         opacity: 1;
         transition-duration: 1s;
     }
