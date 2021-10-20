@@ -1,9 +1,13 @@
 import React from 'react';
-import { Container } from './styles';
+import { Container, Select } from './styles';
 const ProductFilter: React.FC = () => {
     return (
         <Container>
-            <h2>Filtros</h2>
+            <h3>Filtrar por</h3>
+
+            <Select>
+                <option value="">Category</option>
+            </Select>
         </Container>
     );
 };
