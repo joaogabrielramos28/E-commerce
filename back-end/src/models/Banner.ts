@@ -5,7 +5,7 @@ class Banner {
   @PrimaryGeneratedColumn('uuid')
   id:string;
 
-  @Column('simple-array')
+  @Column('')
   images:string;
 }
 
