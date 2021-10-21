@@ -6,7 +6,7 @@ class Banner {
   id:string;
 
   @Column('simple-array')
-  images:Array<string>;
+  images:string;
 }
 
 export default Banner;
