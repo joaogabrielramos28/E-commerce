@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getCustomRepository } from 'typeorm';
+import { getCustomRepository, ObjectLiteral } from 'typeorm';
 import ProductsRepository from '../repositories/ProductsRepository';
 import CreateProductService from '../services/CreateProductService';
 import uploadConfig from '../config/upload';
@@ -16,11 +16,11 @@ productsRouter.get('/', async (request, response) => {
 
 productsRouter.post('/', upload.array('image', 3), async (request, response) => {
   const { name, price, category } = request.body;
-  const images = request.files;
+  const images = request?.files;
 
   const arrayImages:Array<string> = [];
 
-  images?.map<void>((image:Object) => {
+  images?.map<void>((image:ObjectLiteral) => {
     arrayImages.push(image.originalname);
   });
 
