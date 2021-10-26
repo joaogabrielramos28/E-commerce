@@ -16,6 +16,9 @@ class Product {
 
     @Column()
     category:string
+
+    @Column()
+    mainImage:string;
 }
 
 export default Product;

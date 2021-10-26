@@ -14,28 +14,26 @@ productsRouter.get('/', async (request, response) => {
   return response.json(products);
 });
 
-productsRouter.post('/', upload.array('image', 3), async (request, response) => {
+productsRouter.post('/', upload.array('image', 4), async (request, response) => {
   const { name, price, category } = request.body;
   const images = request?.files;
-
   const arrayImages:Array<string> = [];
-
-  images?.map<void>((image:ObjectLiteral) => {
+  // eslint-disable-next-line prefer-const
+  let main = '';
+  images?.map<void>((image:ObjectLiteral, index:number) => {
+    if (index === 0) {
+      main = image.originalname;
+    }
     arrayImages.push(image.originalname);
   });
-
-  // console.log(arrayImages);
-
-  // console.log(name, price, category);
-
-  // console.log('images', images);
 
   const createProduct = new CreateProductService();
   const product = await createProduct.execute({
     name,
     price,
     images: arrayImages,
-    category
+    category,
+    mainImage: main
   });
 
   return response.json(product);

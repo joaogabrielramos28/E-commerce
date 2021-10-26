@@ -6,18 +6,20 @@ interface Request {
     price: string;
     images?:Array<string>;
     category: string;
+    mainImage?:string;
 }
 ;
 
 class CreateProductService {
-  public async execute ({ name, price, images, category }:Request): Promise<Product | null> {
+  public async execute ({ name, price, images, category, mainImage }:Request): Promise<Product | null> {
     const productsRepository = getCustomRepository(ProductsRepository);
 
     const product = productsRepository.create({
       name,
       price,
       images,
-      category
+      category,
+      mainImage
     });
     await productsRepository.save(product);
     return product;
