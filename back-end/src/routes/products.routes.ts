@@ -2,8 +2,11 @@ import { Router } from 'express';
 import { getCustomRepository } from 'typeorm';
 import ProductsRepository from '../repositories/ProductsRepository';
 import CreateProductService from '../services/CreateProductService';
-
+import uploadConfig from '../config/upload';
+import multer from 'multer';
 const productsRouter = Router();
+
+const upload = multer(uploadConfig);
 
 productsRouter.get('/', async (request, response) => {
   const productsRepository = getCustomRepository(ProductsRepository);
@@ -11,17 +14,28 @@ productsRouter.get('/', async (request, response) => {
   return response.json(products);
 });
 
-productsRouter.post('/', async (request, response) => {
-  const { name, price, images, category } = request.body;
-  console.log(name, price, images, category);
+productsRouter.post('/', upload.array('image', 3), async (request, response) => {
+  const { name, price, category } = request.body;
+  const images = request.files;
+
+  const arrayImages:Array<string> = [];
+
+  images?.map<void>((image:Object) => {
+    arrayImages.push(image.originalname);
+  });
+
+  // console.log(arrayImages);
+
+  // console.log(name, price, category);
+
+  // console.log('images', images);
 
   const createProduct = new CreateProductService();
-
   const product = await createProduct.execute({
     name,
     price,
-    category,
-    images
+    images: arrayImages,
+    category
   });
 
   return response.json(product);

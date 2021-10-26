@@ -4,7 +4,7 @@ import ProductsRepository from '../repositories/ProductsRepository';
 interface Request {
     name: string;
     price: string;
-    images:Array<string>;
+    images?:Array<string>;
     category: string;
 }
 ;
