@@ -20,11 +20,12 @@ productsRouter.post('/', upload.array('image', 4), async (request, response) => 
   const arrayImages:Array<string> = [];
   // eslint-disable-next-line prefer-const
   let main = '';
+  // eslint-disable-next-line array-callback-return
   images?.map<void>((image:ObjectLiteral, index:number) => {
     if (index === 0) {
-      main = image.originalname;
+      main = image.filename;
     }
-    arrayImages.push(image.originalname);
+    arrayImages.push(image.filename);
   });
 
   const createProduct = new CreateProductService();
