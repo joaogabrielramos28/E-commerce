@@ -15,4 +15,5 @@ export const List = styled.div`
     display: grid;
     justify-content: center;
     grid-template-columns: 350px 350px 350px;
+    gap: 50px 0;
 `;

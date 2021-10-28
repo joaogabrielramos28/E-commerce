@@ -25,6 +25,7 @@ const Carousel: React.FC<CarouselProps> = () => {
                 console.log(err);
             });
     }, []);
+
     const nextSlide = () => {
         setCurrent(current === length - 1 ? 0 : current + 1);
     };
