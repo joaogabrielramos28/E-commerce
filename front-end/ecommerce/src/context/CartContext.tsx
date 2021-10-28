@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
+import ToastFunction from '../utils/toast';
 export const CartContext: any = React.createContext({});
 interface ContextProps {
     children: any;
@@ -32,6 +33,8 @@ export const CartProvider = (props: ContextProps) => {
         setListProduct([...listProduct, product]);
 
         localStorage.setItem('@E-commerce:Cart', JSON.stringify(listProduct));
+
+        ToastFunction('Product added');
     };
 
     const removeFromCart = ({ name }: ProductData): void => {
@@ -39,11 +42,15 @@ export const CartProvider = (props: ContextProps) => {
 
         localStorage.setItem('@E-commerce:Cart', JSON.stringify(newList));
         setListProduct(newList);
+        ToastFunction('Product removed');
     };
 
-    const RemoveAllFromCart = (): void => {
+    const RemoveAllFromCart = (): any => {
+        if (listProduct.length === 0) {
+            return ToastFunction('Cart is empty', 'info');
+        }
         localStorage.removeItem('@E-commerce:Cart');
-
+        ToastFunction('Products removed');
         setListProduct([]);
     };
 

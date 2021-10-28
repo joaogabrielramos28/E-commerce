@@ -26,6 +26,7 @@ const ProductList: React.FC = () => {
                         price={product.price}
                         category={product.category}
                         name={product.name}
+                        key={product.id}
                     />
                 ))}
             </List>

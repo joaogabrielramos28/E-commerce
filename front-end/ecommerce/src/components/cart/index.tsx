@@ -28,6 +28,7 @@ const Cart: React.FC<CartProps> = (props) => {
         priceCart,
         RemoveAllFromCart,
     } = useContext(CartContext);
+
     return (
         <>
             {cartIsOpen ? (
@@ -41,7 +42,7 @@ const Cart: React.FC<CartProps> = (props) => {
                         </Header>
                         <ProductList>
                             {listProduct.map((product: ProductCartData) => (
-                                <Product>
+                                <Product key={product.name}>
                                     <>
                                         <img
                                             src={
