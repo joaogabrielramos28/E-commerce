@@ -19,7 +19,6 @@ const Carousel: React.FC<CarouselProps> = () => {
         api.get<Banner[]>('/banners')
             .then((response) => {
                 setImages(response.data);
-                console.log(response.data);
             })
             .catch((err) => {
                 console.log(err);

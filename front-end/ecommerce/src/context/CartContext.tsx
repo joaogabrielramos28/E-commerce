@@ -43,7 +43,6 @@ export const CartProvider = (props: ContextProps) => {
 
     const RemoveAllFromCart = (): void => {
         localStorage.removeItem('@E-commerce:Cart');
-        console.log('acionei');
 
         setListProduct([]);
     };
