@@ -17,6 +17,7 @@ export const Content = styled.nav`
     z-index: -10;
 
     svg {
+        margin: 0 10px;
         cursor: pointer;
 
         &:hover {

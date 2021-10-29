@@ -3,15 +3,13 @@ import { Container } from './styles';
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
 import Img from './img.jpg';
 import api from '../../services/api';
-interface CarouselProps {
-    slides: Array<Object>;
-}
+
 interface Banner {
     id: string;
     images: string;
 }
 
-const Carousel: React.FC<CarouselProps> = () => {
+const Carousel: React.FC = () => {
     const [images, setImages] = useState<Banner[]>([]);
     const [current, setCurrent] = useState(0);
     const length = images.length;
