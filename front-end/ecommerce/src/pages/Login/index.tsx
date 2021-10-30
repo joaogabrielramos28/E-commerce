@@ -1,17 +1,42 @@
-import React, { EventHandler, FormEvent, useRef } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { IoIosArrowRoundBack, FaSignInAlt, AiFillLock } from 'react-icons/all';
 import Input from '../../components/form/input/index';
 import { Container, Content, Background, Back } from './styles';
 import Button from '../../components/form/button/index';
-import EventEmitter from 'events';
+
+import { Form } from '@unform/web';
+import api from '../../services/api';
+import ToastFunction from '../../utils/toast';
+import { AuthContext } from '../../context/AuthContext';
+
+interface AuthData {
+    email: string;
+    password: string;
+}
+
+interface ResponseData {
+    data: DataProps;
+}
+
+interface DataProps {
+    user: object;
+}
+
 const Login = () => {
-    const inputRef = useRef(null);
+    const { signIn } = useContext(AuthContext);
+    const handleSubmit = async (data: AuthData) => {
+        try {
+            const response: ResponseData = await api.post('/sessions', {
+                email: data.email,
+                password: data.password,
+            });
 
-    const HandleSubmit = (e: FormEvent) => {
-        e.preventDefault();
-
-        console.log(inputRef.current);
+            signIn;
+            ToastFunction('Login successful', 'success');
+        } catch (err) {
+            ToastFunction('Login Error', 'error');
+        }
     };
     return (
         <>
@@ -23,14 +48,13 @@ const Login = () => {
                     </Link>
                 </Back>
                 <Content>
-                    <form method="POST" onSubmit={HandleSubmit}>
+                    <Form method="POST" onSubmit={handleSubmit}>
                         <h1>store.com</h1>
                         <h2>Sign In</h2>
                         <Input
                             name="email"
                             placeholder="example@hotmail.com"
                             icon={FaSignInAlt}
-                            ref={inputRef}
                         />
 
                         <Input
@@ -41,7 +65,7 @@ const Login = () => {
                         />
 
                         <Button type="submit"> Login</Button>
-                    </form>
+                    </Form>
                 </Content>
                 <Background />
             </Container>
