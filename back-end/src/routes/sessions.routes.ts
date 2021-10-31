@@ -15,9 +15,9 @@ sessionsRouter.post('/', async (request, response) => {
       id: user.id,
       name: user.name,
       email: user.email,
-      age: user.age,
-      token: token
-    }
+      age: user.age
+    },
+    token
   });
 });
 
