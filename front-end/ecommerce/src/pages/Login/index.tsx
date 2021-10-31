@@ -6,14 +6,14 @@ import { Container, Content, Background, Back } from './styles';
 import Button from '../../components/form/button/index';
 
 import { Form } from '@unform/web';
-import { AuthContext } from '../../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 interface AuthData {
     email: string;
     password: string;
 }
 
 const Login = () => {
-    const { signIn, user } = useContext(AuthContext);
+    const { signIn, user } = useAuth();
 
     const handleSubmit = async (data: AuthData) => {
         signIn({

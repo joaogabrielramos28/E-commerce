@@ -1,13 +1,17 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Routes from './routes';
 import { ToastContainer } from 'react-toastify';
 import GlobalStyle from './styles/global';
+import AppProvider from './context';
 const App: React.FC = () => (
     <>
-        <BrowserRouter>
-            <Routes />
-        </BrowserRouter>
+        <Router>
+            <AppProvider>
+                <Routes />
+            </AppProvider>
+        </Router>
+
         <GlobalStyle />
         <ToastContainer theme={'dark'} />
     </>

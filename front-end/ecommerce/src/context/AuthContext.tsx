@@ -7,6 +7,16 @@ interface AuthState {
     user: object;
 }
 
+interface SignInCredentials {
+    email: string;
+    password: string;
+}
+interface AuthContextData {
+    user: object;
+    signIn(credentials: SignInCredentials): void;
+    signOut(): void;
+}
+
 const AuthContext: any = createContext({});
 
 const AuthProvider: React.FC = ({ children }) => {
@@ -54,4 +64,14 @@ const AuthProvider: React.FC = ({ children }) => {
     );
 };
 
-export { AuthContext, AuthProvider };
+function useAuth(): AuthContextData {
+    const context: any = useContext(AuthContext);
+
+    if (!context) {
+        throw new Error('UseAuth must be used within a AuthProvider');
+    }
+
+    return context;
+}
+
+export { AuthContext, AuthProvider, useAuth };
