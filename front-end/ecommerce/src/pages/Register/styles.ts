@@ -9,14 +9,14 @@ export const Back = styled.div`
     a {
         display: flex;
         align-items: center;
-        justify-content: center;
-        padding: 0;
-        color: #ffff;
-        text-decoration: none;
+        margin-top: 20px;
+        font-size: 14px;
+        color: #bb86fc;
+        opacity: 0.6;
 
         &:hover {
-            opacity: 0.7;
-            transition: opacity 0.4s ease-in-out;
+            opacity: 1;
+            transition: opacity 0.4s ease;
         }
     }
 `;
