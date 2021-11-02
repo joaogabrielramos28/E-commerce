@@ -160,3 +160,8 @@ export const CartInfo = styled.div`
         font-size: 20px;
     }
 `;
+
+export const CartEmpty = styled.h2`
+    color: #9a9b9c;
+    font-weight: bold;
+`;

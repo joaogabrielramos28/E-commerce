@@ -8,6 +8,7 @@ import {
     Product,
     BuyContainer,
     CartInfo,
+    CartEmpty,
 } from './styles';
 
 import Button from '../form/button';
@@ -45,6 +46,9 @@ const Cart: React.FC<CartProps> = (props) => {
                             </a>
                         </Header>
                         <ProductList>
+                            {listProduct.length === 0 && (
+                                <CartEmpty>Cart is empty :(</CartEmpty>
+                            )}
                             {listProduct.map((product: ProductCartData) => (
                                 <Product key={product.name}>
                                     <>
