@@ -10,9 +10,16 @@ interface ProductProps {
     price: string;
     name: string;
     category: string;
+    id: string;
 }
 
-const Product: React.FC<ProductProps> = ({ image, price, name, category }) => {
+const Product: React.FC<ProductProps> = ({
+    image,
+    price,
+    name,
+    category,
+    id,
+}) => {
     const { addToCart } = useContext(CartContext);
 
     return (
@@ -28,7 +35,7 @@ const Product: React.FC<ProductProps> = ({ image, price, name, category }) => {
             </Link>
             <ButtonCart
                 icon={BiCart}
-                onClick={() => addToCart({ image, price, name })}
+                onClick={() => addToCart({ name, image, price, id })}
             >
                 Add to cart
             </ButtonCart>

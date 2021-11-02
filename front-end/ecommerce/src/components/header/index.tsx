@@ -7,10 +7,10 @@ import { CartContext } from '../../context/CartContext';
 const Header: React.FC = () => {
     const { setCartIsOpen } = useContext(CartContext);
     const handleOpenCart = useCallback(() => {
-        setCartIsOpen(true);
+        setCartIsOpen(!!1);
     }, []);
     const handleCloseCart = useCallback(() => {
-        setCartIsOpen(false);
+        setCartIsOpen(!!0);
     }, []);
 
     return (

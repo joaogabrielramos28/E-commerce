@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
+import { array } from 'yup/lib/locale';
 import ToastFunction from '../utils/toast';
 export const CartContext: any = React.createContext({});
 interface ContextProps {
@@ -9,6 +10,8 @@ interface ProductData {
     image: string;
     name: string;
     price: string;
+    id: string;
+    qty: number;
 }
 
 export const CartProvider = (props: ContextProps) => {
@@ -21,18 +24,31 @@ export const CartProvider = (props: ContextProps) => {
 
         return [];
     });
-    const [priceCart, setPriceCart] = useState(0);
-    const [cartIsOpen, setCartIsOpen] = useState<Boolean>(false);
-    const addToCart = ({ image, price, name }: ProductData): void => {
-        const product = {
-            image: image,
-            price: price,
-            name: name,
-        };
 
-        setListProduct([...listProduct, product]);
-
+    useEffect(() => {
         localStorage.setItem('@E-commerce:Cart', JSON.stringify(listProduct));
+    }, [listProduct]);
+
+    const [priceCart, setPriceCart] = useState(0);
+    const [cartIsOpen, setCartIsOpen] = useState<number>(0);
+    const addToCart = ({ image, price, name, id }: ProductData): void => {
+        const exist = listProduct.find((item) => item.id === id);
+        const product = {
+            name: name,
+            price: price,
+            image: image,
+            id: id,
+            qty: 1,
+        };
+        if (exist) {
+            setListProduct(
+                listProduct.map((item) =>
+                    item.id === id ? { ...exist, qty: exist.qty + 1 } : item,
+                ),
+            );
+        } else {
+            setListProduct([...listProduct, { ...product, qty: 1 }]);
+        }
 
         ToastFunction('Product added');
     };
@@ -59,7 +75,7 @@ export const CartProvider = (props: ContextProps) => {
         listProduct.map((product) => {
             const priceFormatted = product.price.replace(',', '.');
 
-            totalPriceCart += parseFloat(priceFormatted);
+            totalPriceCart += parseFloat(priceFormatted) * product.qty;
         });
 
         setPriceCart(totalPriceCart);

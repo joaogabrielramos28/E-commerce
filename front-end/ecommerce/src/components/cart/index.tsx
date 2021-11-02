@@ -20,9 +20,11 @@ interface CartProps {
 import styled from 'styled-components';
 
 interface ProductCartData {
+    image: string;
     name: string;
     price: string;
-    image: string;
+    id: string;
+    qty: number;
 }
 
 const Cart: React.FC<CartProps> = (props) => {
@@ -75,7 +77,7 @@ const Cart: React.FC<CartProps> = (props) => {
                                         </button>
                                         <span>
                                             <input
-                                                value={1}
+                                                defaultValue={product.qty}
                                                 type="number"
                                             ></input>
                                         </span>
