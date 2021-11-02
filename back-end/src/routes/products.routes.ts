@@ -10,8 +10,15 @@ const upload = multer(uploadConfig);
 
 productsRouter.get('/', async (request, response) => {
   const productsRepository = getCustomRepository(ProductsRepository);
-  const products = await productsRepository.find();
-  return response.json(products);
+  const name = request.query.name;
+
+  if (name) {
+    const product = await productsRepository.findByName(name);
+    return response.json(product);
+  } else {
+    const products = await productsRepository.find();
+    return response.json(products);
+  }
 });
 
 productsRouter.post('/', upload.array('image', 4), async (request, response) => {
