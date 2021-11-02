@@ -17,3 +17,10 @@ export const List = styled.div`
     grid-template-columns: 350px 350px 350px;
     gap: 50px 0;
 `;
+
+export const LoadContainer = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
