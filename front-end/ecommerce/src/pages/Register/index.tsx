@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useCallback, useRef } from 'react';
 import { Back, Container, Content, Background } from './styles';
 import Button from '../../components/form/button/index';
 import Input from '../../components/form/input/index';
 import { Form } from '@unform/web';
+import { FormHandles } from '@unform/core';
 import ToastFunction from '../../utils/toast';
 
 import {
@@ -14,7 +15,8 @@ import {
 } from 'react-icons/all';
 import { Link, useHistory } from 'react-router-dom';
 import api from '../../services/api';
-
+import * as Yup from 'yup';
+import validationErrors from '../../utils/validationErrors';
 interface RegisterData {
     name: string;
     email: string;
@@ -24,25 +26,50 @@ interface RegisterData {
 
 const Register = () => {
     const history = useHistory();
-    const handelSubmit = async (data: RegisterData) => {
-        try {
-            const response = await api.post('/users', {
-                name: data.name,
-                email: data.email,
-                age: data.age,
-                password: data.password,
-            });
+    const formRef = useRef<FormHandles>(null);
+    const handelSubmit = useCallback(
+        async (data: RegisterData) => {
+            try {
+                const schema = Yup.object().shape({
+                    name: Yup.string().required('Name is required.'),
+                    email: Yup.string()
+                        .required('Email is required')
+                        .email('Type a valid email'),
+                    password: Yup.string().min(6, 'Password is too short'),
+                    age: Yup.number().required('Age is required.'),
+                });
 
-            ToastFunction(
-                `Welcome ${data.name}.Now, you can login!`,
-                'success',
-            );
+                await schema.validate(data, { abortEarly: false });
 
-            history.push('/login');
-        } catch (err) {
-            ToastFunction('Error to create your account ', 'error');
-        }
-    };
+                const response = await api
+                    .post('/users', {
+                        name: data.name,
+                        email: data.email,
+                        age: data.age,
+                        password: data.password,
+                    })
+                    .then(() => {
+                        ToastFunction(
+                            `Welcome ${data.name}.Now, you can login!`,
+                            'success',
+                        );
+
+                        history.push('/login');
+                    })
+                    .catch(() => {
+                        ToastFunction(
+                            'Register failed. Check your credentials and try again',
+                            'error',
+                        );
+
+                        return;
+                    });
+            } catch (err) {
+                validationErrors(err);
+            }
+        },
+        [useHistory, ToastFunction],
+    );
 
     return (
         <Container>
@@ -53,9 +80,9 @@ const Register = () => {
                 </Link>
             </Back>
             <Content>
-                <Form method="POST" onSubmit={handelSubmit}>
+                <Form ref={formRef} method="POST" onSubmit={handelSubmit}>
                     <h1>store.com</h1>
-                    <h2>Sign In</h2>
+                    <h2>Register</h2>
                     <Input
                         name="name"
                         placeholder="John Doe"

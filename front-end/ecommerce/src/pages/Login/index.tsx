@@ -1,12 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { IoIosArrowRoundBack, FaSignInAlt, AiFillLock } from 'react-icons/all';
 import Input from '../../components/form/input/index';
 import { Container, Content, Background, Back } from './styles';
 import Button from '../../components/form/button/index';
-
+import * as Yup from 'yup';
 import { Form } from '@unform/web';
+import { FormHandles } from '@unform/core';
 import { useAuth } from '../../context/AuthContext';
+import validationErrors from '../../utils/validationErrors';
 interface AuthData {
     email: string;
     password: string;
@@ -14,13 +16,27 @@ interface AuthData {
 
 const Login = () => {
     const { signIn } = useAuth();
+    const formRef = useRef<FormHandles>(null);
+    const handleSubmit = useCallback(async (data: AuthData) => {
+        try {
+            formRef.current?.setErrors({});
+            const schema = Yup.object().shape({
+                email: Yup.string()
+                    .email('type a valid email.')
+                    .required('E-mail is required.'),
+                password: Yup.string().required('Password is required.'),
+            });
 
-    const handleSubmit = async (data: AuthData) => {
-        signIn({
-            email: data.email,
-            password: data.password,
-        });
-    };
+            await schema.validate(data, { abortEarly: false });
+
+            signIn({
+                email: data.email,
+                password: data.password,
+            });
+        } catch (err) {
+            validationErrors(err);
+        }
+    }, []);
     return (
         <>
             <Container>
@@ -31,7 +47,7 @@ const Login = () => {
                     </Link>
                 </Back>
                 <Content>
-                    <Form method="POST" onSubmit={handleSubmit}>
+                    <Form ref={formRef} method="POST" onSubmit={handleSubmit}>
                         <h1>store.com</h1>
                         <h2>Sign In</h2>
                         <Input

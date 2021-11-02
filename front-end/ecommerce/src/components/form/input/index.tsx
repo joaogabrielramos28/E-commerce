@@ -14,7 +14,7 @@ import { Container } from './styles';
 
 const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
     const inputRef = useRef(null);
-    const { fieldName, clearError, defaultValue, registerField } =
+    const { fieldName, clearError, defaultValue, error, registerField } =
         useField(name);
 
     useEffect(() => {
@@ -29,6 +29,7 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
             {Icon && <Icon size={20} />}
 
             <input {...rest} ref={inputRef} />
+            {error}
         </Container>
     );
 };
