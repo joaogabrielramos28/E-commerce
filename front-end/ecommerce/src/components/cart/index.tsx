@@ -9,10 +9,14 @@ import {
     BuyContainer,
     CartInfo,
 } from './styles';
+
+import Button from '../form/button';
 import { AiOutlineClose } from 'react-icons/all';
 interface CartProps {
     modaClose: () => void;
 }
+
+import styled from 'styled-components';
 
 interface ProductCartData {
     name: string;
@@ -81,7 +85,7 @@ const Cart: React.FC<CartProps> = (props) => {
                                 <p>Total</p>
                                 <span>R${priceCart}</span>
                             </CartInfo>
-                            <button>Purchase</button>
+                            <ButtonCart>Purchase</ButtonCart>
                         </BuyContainer>
                     </Container>
                     <Overlay onClick={props.modaClose} />
@@ -92,3 +96,10 @@ const Cart: React.FC<CartProps> = (props) => {
 };
 
 export default Cart;
+
+const ButtonCart = styled(Button)`
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    min-width: initial;
+    width: 180px;
+    margin: 0 auto;
+`;

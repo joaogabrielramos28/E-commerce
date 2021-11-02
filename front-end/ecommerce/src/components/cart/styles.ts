@@ -139,26 +139,6 @@ export const BuyContainer = styled.div`
     height: 300px;
     align-items: center;
     justify-content: center;
-
-    button {
-        width: 180px;
-        border: none;
-        outline: none;
-        margin: 0 auto;
-        background-color: #bb86fc;
-        color: #fff;
-        padding: 12px 36px;
-        border-radius: 8px;
-        font-size: 16px;
-        cursor: pointer;
-        opacity: 0.7;
-        font-weight: bold;
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        &:hover {
-            opacity: 1;
-            transition: opacity 0.4s;
-        }
-    }
 `;
 
 export const CartInfo = styled.div`

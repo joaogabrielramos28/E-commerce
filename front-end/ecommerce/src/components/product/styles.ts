@@ -16,31 +16,6 @@ export const Container = styled.div`
         object-fit: cover;
         border-radius: 16px;
     }
-
-    button {
-        width: 200px;
-        border: none;
-        outline: none;
-        padding: 8px;
-        border-radius: 8px;
-        margin-top: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #bb86fc;
-        color: #fff;
-        cursor: pointer;
-        opacity: 0.7;
-
-        svg {
-            margin-right: 5px;
-        }
-
-        &:hover {
-            opacity: 1;
-            transition: opacity 0.4s;
-        }
-    }
 `;
 
 export const ProductInfo = styled.div`
