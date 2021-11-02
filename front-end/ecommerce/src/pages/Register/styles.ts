@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import SignInBackgroundImg from '../../assets/signInImg.jpg';
-
+import RegisterBackground from '../../assets/registerImg.jpg';
 export const Back = styled.div`
     padding: 16px 16px;
     display: flex;
@@ -26,18 +25,6 @@ export const Container = styled.div`
     height: 100vh;
     display: flex;
     align-items: stretch;
-
-    a {
-        margin-top: 20px;
-        font-size: 14px;
-        color: #bb86fc;
-        opacity: 0.6;
-
-        &:hover {
-            opacity: 1;
-            transition: opacity 0.4s ease;
-        }
-    }
 `;
 
 export const Content = styled.div`
@@ -62,6 +49,6 @@ export const Content = styled.div`
 export const Background = styled.div`
     flex: 1;
     z-index: 1;
-    background: url(${SignInBackgroundImg}) no-repeat center;
+    background: url(${RegisterBackground}) no-repeat center;
     background-size: cover;
 `;

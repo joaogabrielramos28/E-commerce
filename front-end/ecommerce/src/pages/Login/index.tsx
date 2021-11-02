@@ -13,7 +13,7 @@ interface AuthData {
 }
 
 const Login = () => {
-    const { signIn, user } = useAuth();
+    const { signIn } = useAuth();
 
     const handleSubmit = async (data: AuthData) => {
         signIn({
@@ -49,6 +49,9 @@ const Login = () => {
 
                         <Button type="submit"> Login</Button>
                     </Form>
+                    <Link to="/register">
+                        Don't have a account? Register here!
+                    </Link>
                 </Content>
                 <Background />
             </Container>
